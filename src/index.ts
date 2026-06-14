@@ -23,6 +23,7 @@ const server = new Server(
 );
 
 const DEFAULT_SHEET_URL = process.env.EMMA_SHEET_URL || '';
+const DEFAULT_SHEET_GID = process.env.EMMA_SHEET_GID || '0';
 
 function schema(properties: Record<string, unknown>, required: string[] = []) {
   return { type: 'object', properties, required };
@@ -158,7 +159,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   try {
     const sheetUrl = requireSheetUrl(argRecord);
-    const gid = (argRecord?.gid as string | undefined) || '0';
+    const gid = (argRecord?.gid as string | undefined) || DEFAULT_SHEET_GID;
     const transactions = await fetchTransactions(getCsvUrl(sheetUrl, gid));
 
     switch (name) {

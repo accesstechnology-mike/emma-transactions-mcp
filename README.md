@@ -48,7 +48,8 @@ Use an environment variable:
       "command": "node",
       "args": ["/absolute/path/to/emma-transactions-mcp/dist/index.js"],
       "env": {
-        "EMMA_SHEET_URL": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv"
+        "EMMA_SHEET_URL": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=csv",
+        "EMMA_SHEET_GID": "0"
       }
     }
   }
@@ -57,7 +58,7 @@ Use an environment variable:
 
 Or pass `sheet_url` in each tool call.
 
-Optional `gid` selects a specific tab. It defaults to `0`.
+Optional `gid` selects a specific tab. It defaults to `EMMA_SHEET_GID`, then `0`.
 
 ## Expected columns
 

@@ -4,7 +4,7 @@ import { Transaction, TransactionSchema, ValidationResult } from './types.js';
 
 const COLUMN_ALIASES = {
   date: ['date', 'transaction date', 'timestamp', 'time'],
-  description: ['description', 'name', 'transaction', 'transaction name', 'title'],
+  description: ['description', 'name', 'transaction', 'transaction name', 'title', 'custom name', 'counterparty', 'merchant', 'additional details'],
   amount: ['amount', 'value', 'transaction amount', 'money out', 'money in'],
   currency: ['currency', 'currency code'],
   category: ['category', 'emma category'],
