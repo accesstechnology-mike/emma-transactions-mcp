@@ -31,7 +31,7 @@ Current implementation supports unauthenticated CSV access: published-to-web CSV
 From a checkout:
 
 ```bash
-git clone https://github.com/YOUR-USER/emma-transactions-mcp.git
+git clone https://github.com/accesstechnology-mike/emma-transactions-mcp.git
 cd emma-transactions-mcp
 npm install
 npm run build
