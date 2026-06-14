@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import axios from 'axios';
-import { fetchTransactions, getCsvUrl, parseAmount, parseTransactionsFromCsv, validateTransactions } from './sheets.js';
+import { fetchTransactions, getCsvUrl, normalizeDate, parseAmount, parseTransactionsFromCsv, validateTransactions } from './sheets.js';
 
 vi.mock('axios');
 
@@ -78,6 +78,13 @@ describe('transaction parsing', () => {
     expect(parseAmount('£1,234.56')).toBe(1234.56);
     expect(parseAmount('-£1,234.56')).toBe(-1234.56);
     expect(parseAmount('(£42.10)')).toBe(-42.1);
+  });
+
+  it('normalizes slash dates to ISO dates for reliable filtering and monthly summaries', () => {
+    expect(normalizeDate('6/14/2026')).toBe('2026-06-14');
+
+    const [transaction] = parseTransactionsFromCsv('Date,Description,Amount\n6/14/2026,Slash Date,-1.00');
+    expect(transaction.date).toBe('2026-06-14');
   });
 
   it('fetches and parses CSV from a URL', async () => {

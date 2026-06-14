@@ -64,6 +64,32 @@ export function parseAmount(raw: string): number {
   return isParenthesizedNegative || isExplicitNegative ? -Math.abs(parsed) : parsed;
 }
 
+export function normalizeDate(raw: string): string {
+  const value = raw.trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+
+  const slashDate = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (slashDate) {
+    const month = Number.parseInt(slashDate[1], 10);
+    const day = Number.parseInt(slashDate[2], 10);
+    const year = Number.parseInt(slashDate[3], 10);
+    const parsed = new Date(Date.UTC(year, month - 1, day));
+
+    if (
+      parsed.getUTCFullYear() === year &&
+      parsed.getUTCMonth() === month - 1 &&
+      parsed.getUTCDate() === day
+    ) {
+      return parsed.toISOString().slice(0, 10);
+    }
+  }
+
+  const parsed = new Date(value);
+  if (!Number.isNaN(parsed.valueOf())) return parsed.toISOString().slice(0, 10);
+
+  throw new Error(`Invalid date: ${raw}`);
+}
+
 export function parseTransactionsFromCsv(csv: string): Transaction[] {
   const records = parse(csv, {
     columns: true,
@@ -86,7 +112,7 @@ export function parseTransactionsFromCsv(csv: string): Transaction[] {
     const typeRaw = valueFor(row, 'type')?.toLowerCase();
 
     return TransactionSchema.parse({
-      date,
+      date: normalizeDate(date),
       description,
       amount,
       currency,
