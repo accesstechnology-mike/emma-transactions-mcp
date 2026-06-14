@@ -1,0 +1,46 @@
+{
+  "name": "emma-transactions-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Emma-app transaction exports from Google Sheets",
+  "main": "dist/index.js",
+  "bin": {
+    "emma-transactions-mcp": "./dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean --dts",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "vitest run",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "emma",
+    "google-sheets",
+    "finance"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.1",
+    "axios": "^1.7.9",
+    "csv-parse": "^5.6.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/accesstechnology-mike/emma-transactions-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/accesstechnology-mike/emma-transactions-mcp/issues"
+  },
+  "homepage": "https://github.com/accesstechnology-mike/emma-transactions-mcp#readme"
+}
