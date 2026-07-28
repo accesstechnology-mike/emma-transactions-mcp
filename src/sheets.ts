@@ -100,13 +100,13 @@ export function parseTransactionsFromCsv(csv: string): Transaction[] {
 
   return records.map((row, index) => {
     const date = valueFor(row, 'date');
-    const description = valueFor(row, 'description');
     const amountRaw = valueFor(row, 'amount');
 
-    if (!date || !description || amountRaw === undefined) {
-      throw new Error(`Row ${index + 2} is missing required columns: date, description/name, or amount/value`);
+    if (!date || amountRaw === undefined) {
+      throw new Error(`Row ${index + 2} is missing required columns: date or amount/value`);
     }
 
+    const description = valueFor(row, 'description') ?? '[Unlabelled transaction]';
     const amount = parseAmount(amountRaw);
     const currency = valueFor(row, 'currency') ?? 'GBP';
     const typeRaw = valueFor(row, 'type')?.toLowerCase();

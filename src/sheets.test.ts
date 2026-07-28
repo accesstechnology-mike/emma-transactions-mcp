@@ -70,8 +70,23 @@ describe('transaction parsing', () => {
     expect(transactions[0].type).toBe('Income');
   });
 
-  it('throws a useful error for missing required columns', () => {
-    expect(() => parseTransactionsFromCsv(`Date,Description\n2026-01-01,No amount`)).toThrow(/missing required columns/i);
+  it('retains transactions without a description using an explicit placeholder', () => {
+    const [transaction] = parseTransactionsFromCsv(
+      `Date,Description,Amount,Account,Category\n2026-07-28,,-12.34,Current Account,General`,
+    );
+
+    expect(transaction).toMatchObject({
+      date: '2026-07-28',
+      description: '[Unlabelled transaction]',
+      amount: -12.34,
+      account: 'Current Account',
+      category: 'General',
+    });
+  });
+
+  it('throws a useful error when date or amount is missing', () => {
+    expect(() => parseTransactionsFromCsv(`Date,Description\n2026-01-01,No amount`)).toThrow(/date or amount/i);
+    expect(() => parseTransactionsFromCsv(`Date,Description,Amount\n,No date,10.00`)).toThrow(/date or amount/i);
   });
 
   it('parses currency symbols, commas, negatives, and accounting parentheses', () => {
