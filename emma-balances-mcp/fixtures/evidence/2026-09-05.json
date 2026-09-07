@@ -1,0 +1,49 @@
+{
+  "schema_version": 2,
+  "date": "2026-09-05",
+  "captured_at": "2026-09-05T07:15:00Z",
+  "source": "emma",
+  "base_currency": "GBP",
+  "accounts": [
+    {
+      "id": "acc_current_001",
+      "name": "Everyday Current",
+      "institution": "Example Bank",
+      "type": "current",
+      "currency": "GBP",
+      "balance": 1543.67,
+      "available": 1493.67,
+      "last_updated": "2026-09-05T07:14:00Z"
+    },
+    {
+      "id": "acc_savings_001",
+      "name": "Rainy Day Savings",
+      "institution": "Example Bank",
+      "type": "savings",
+      "currency": "GBP",
+      "balance": 5250.00,
+      "available": 5250.00,
+      "last_updated": "2026-09-05T07:14:00Z"
+    },
+    {
+      "id": "acc_credit_001",
+      "name": "Rewards Credit Card",
+      "institution": "Example Card Co",
+      "type": "credit",
+      "currency": "GBP",
+      "balance": -95.30,
+      "available": 4904.70,
+      "last_updated": "2026-09-05T07:14:00Z"
+    },
+    {
+      "id": "acc_eur_001",
+      "name": "Travel Wallet",
+      "institution": "Example FX",
+      "type": "wallet",
+      "currency": "EUR",
+      "balance": 142.50,
+      "available": 142.50,
+      "last_updated": "2026-09-05T07:14:00Z"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "date": "2020-01-01",
+  "accounts": [
+    {
+      "id": "acc_legacy_001",
+      "name": "Legacy Account",
+      "balance": 1.23
+    }
+  ]
+}
